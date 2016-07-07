@@ -1,0 +1,46 @@
+<style>
+  .form-group{
+    margin-bottom:30px;
+  }
+  .panel{
+    margin-top:50px;
+  }
+</style>
+
+<ul class="list-group">
+  <li class="list-group-item" ng-repeat="post in posts">
+    <h4 class="list-group-item-heading">{{post.title}}</h4>
+    <p class="list-group-item-text">
+      <span class="label label-success">Published</span>
+      <span class="label label-primary">Draft</span>
+      <span class="label label-default">Private</span>
+      <span class="label label-danger">Trash</span>
+    </p>
+  </li>
+</ul>
+
+
+<div class="form-group">
+  <label class="control-label">Title</label>
+  <input type="text" class="form-control" placeholder="Title" ng-model="title">
+</div>
+<div class="form-group">
+  <label class="control-label">Content</label>
+  <textarea ui-tinymce="tinymceOptions" ng-model="tinymceModel">Easy! You should check out MoxieManager!</textarea>
+</div>
+<div class="form-group">
+  <label class="control-label">Tags</label>
+  <small>separate by a comma</small>
+  <input type="text" class="form-control" placeholder="Title" ng-model="tags">
+</div>
+
+<div class="form-group">
+  <button class="btn btn-primary" ng-click="savePost()">Save</button>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Preview</h3>
+  </div>
+  <div class="panel-body" ng-bind-html="tinymceModel">
+  </div>
+</div>

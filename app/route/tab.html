@@ -1,0 +1,20 @@
+<label>Name:</label>
+<div class="input-group">
+  <span class="input-group-addon" id="basic-addon3">https://example.com/users/</span>
+  <input type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3" ng-model="yourName" placeholder="Enter a name here">
+</div>
+<hr>
+<h1>Hello {{yourName}}!</h1>
+
+<table class="table table-hover" ng-controller="TabTestController">
+  <tr>
+    <th>ID</th>
+    <th>val</th>
+    <th>key</th>
+  </tr>
+  <tr ng-repeat="_data in data">
+    <td>{{_data.id}}</td>
+    <td>{{_data.val}}</td>
+    <td>{{_data.key}}</td>
+  </tr>
+</table>

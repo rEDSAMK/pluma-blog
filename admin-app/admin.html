@@ -1,0 +1,54 @@
+<style>
+  .clickable
+  {
+      cursor: pointer;
+  }
+  .form-group{
+    margin-top:30px;
+  }
+  .form-horizontal .form-group{
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .admin-app{
+    font-size:16px;
+  }
+</style>
+
+<ul class="nav nav-tabs">
+  <li role="presentation" ui-sref-active-eq="active"><a ui-sref="admin">Settings</a></li>
+  <li role="presentation" ui-sref-active-eq="active"><a ui-sref="admin.adminEditPost">Post</a></li>
+  <li role="presentation" ui-sref-active-eq="active"><a ui-sref="admin.adminNewPost">New Post</a></li>
+  <li role="presentation" ui-sref-active-eq="active"><a ui-sref="admin.adminUsers">Users</a></li>
+</ul>
+<main class="admin-app" ui-view="adminapp" style="padding-top:10px;">
+  <form class="form-horizontal">
+    <div class="form-group">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" ng-model="blogSettings.signupEnabled"> Enable registration on this blog
+          </label>
+        </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label">Nav brand:</label>
+      <input type="text" class="form-control search-form" placeholder="" ng-model="blogSettings.navBrand" ng-change="log()"/>
+    </div>
+    <div class="form-group">
+      <label class="control-label">About page:</label>
+      <textarea ui-tinymce="tinymceOptions" ng-model="blogSettings.about">Easy! You should check out MoxieManager!</textarea>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Preview</h3>
+      </div>
+      <div class="panel-body" ng-bind-html="blogSettings.about">
+      </div>
+    </div>
+    <div class="form-group">
+      <button class="btn btn-primary" ng-click="saveSettings()">
+        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+      </button>
+    </div>
+  </form>
+</main>

@@ -1,0 +1,92 @@
+<style>
+.form-group{
+  margin-top:30px;
+}
+.panel{
+  margin-top:50px;
+}
+.edit-user-container{
+  margin-top:100px;
+}
+.search-form{
+  margin-bottom:25px;
+}
+</style>
+
+<div class="form-group">
+  <label class="control-label">Search user</label>
+  <input type="text" class="form-control search-form" placeholder="Search" ng-model="userSearch.username"/>
+</div>
+<div class="form-group">
+  <label class="control-label">Filter role</label>
+  <select class="form-control" ng-model="userSearch.role">
+    <option value="">All</option>
+    <option value="ROLE_ANY">Any</option>
+    <option value="ROLE_ADMIN">Admin</option>
+    <option value="ROLE_USER">User</option>
+  </select>
+</div>
+
+<ul class="list-group">
+  <li class="list-group-item clickable" ng-click="select($index);" ng-repeat="user in userFiltered = (filtered).slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))" ng-class="{'active': currentlySelected == $index}">
+    <h4 class="list-group-item-heading">{{user.name}}</h4>
+    <h5>{{user.username}} - {{user.email}}<br/></h5>
+    <div class="list-group-item-text">
+      <span class="label label-default" ng-show="user.role == 'ROLE_USER'">User</span>
+      <span class="label label-primary" ng-show="user.role == 'ROLE_ANY'">Any</span>
+      <span class="label label-success" ng-show="user.role == 'ROLE_ADMIN'">Admin</span>
+    </div>
+  </li>
+</ul>
+<div class="pagination-centered">
+  <uib-pagination total-items="totalItems" max-size="maxSize" force-ellipses="true" boundary-links="true" rotate="true" ng-model="currentPage" ng-change="pageChanged()" class="pagination" items-per-page="itemsPerPage"></uib-pagination>
+</div>
+
+<div ng-show="currentlySelected != -1" class="edit-user-container">
+
+  <h3>Edit user</h3>
+
+  <div class="form-group">
+    <button class="btn btn-primary" ng-click="saveUser()">
+      <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+    </button>
+    <button class="btn btn-danger" ng-click="deleteUser()">
+      <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Trash
+    </button>
+  </div>
+  
+  <div class="form-group">
+    <label class="control-label">Role</label>
+    <select class="form-control" ng-model="role">
+      <option value="ROLE_ANY">Any</option>
+      <option value="ROLE_ADMIN">Admin</option>
+      <option value="ROLE_USER">User</option>
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label class="control-label">Display name:</label>
+    <input type="text" class="form-control" placeholder="Title" ng-model="name">
+  </div>
+  <div class="form-group">
+    <label class="control-label">Email</label>
+    <input type="text" class="form-control" placeholder="Title" ng-model="email">
+  </div>
+  <div class="form-group">
+    <label class="control-label">Github</label>
+    <input type="text" class="form-control" placeholder="Title" ng-model="github">
+  </div>
+  <div class="form-group">
+    <label class="control-label">Twitter</label>
+    <input type="text" class="form-control" placeholder="Title" ng-model="twitter">
+  </div>
+  <div class="form-group">
+    <label class="control-label">Facebook</label>
+    <input type="text" class="form-control" placeholder="Title" ng-model="facebook">
+  </div>
+  <div class="form-group">
+    <label class="control-label">Description</label>
+    <textarea type="text" class="form-control" ng-model="description">
+  </div>
+
+</div>

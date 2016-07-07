@@ -1,0 +1,133 @@
+<style>
+.post-by-img-container{
+  width: 120px;
+  height: 120px;
+  margin-right: auto;
+  margin-left: auto;
+  display: block;
+  border-radius: 100%;
+  overflow: hidden;
+  border: 5px solid gray;
+    background-color: gray;
+}
+
+.post-by-img{
+  width:100%;
+  height:100%;
+}
+
+.tag-container{
+  margin-top:30px;
+  margin-bottom:50px;
+}
+.tag{
+  margin-right:3px !important;
+}
+
+.content{
+  margin-top:30px;
+  margin-bottom:100px;
+}
+
+.post-banner{
+  width:100%;
+  height: 250px;
+  background: url('{{'../upload/' + post.banner}}') no-repeat;
+  background-position: 50%;
+  background-size: cover;
+  border-radius: 4px 4px 4px 4px;
+  margin-bottom:25px;
+}
+
+.post-banner-gradient{
+  background: -moz-linear-gradient(top,  rgba(255,255,255,0) 0%, rgba(255,255,255,1) 77%, rgba(255,255,255,1) 100%);
+background: -webkit-linear-gradient(top,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 77%,rgba(255,255,255,1) 100%);
+background: linear-gradient(to bottom,  rgba(255,255,255,0) 0%,rgba(255,255,255,1) 77%,rgba(255,255,255,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=0 );
+
+}
+
+.author-container{
+  border: 1px solid black;
+  padding: 40px 40px 40px 40px;
+  border-radius: 4px 4px 4px 4px;
+  border:2px dotted #ddd;
+}
+.author-container h3{
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.author-description{
+  margin-top:30px;
+  margin-bottom:30px;
+  font-size: 16px;
+}
+
+.fa{
+  margin-right: 10px;
+}
+
+a{
+  color:#333;
+}
+a:focus, a:hover {
+  color: #333;
+  text-decoration: none;
+}
+</style>
+
+<div class="post-banner"> </div>
+<h4>{{ post.date | date:'MMMM d, yyyy'}} <small>by</small> <a ui-sref="profileUser({username: post.postedBy.username})">{{post.postedBy.name}}</a></h4>
+
+<hr class="style17">
+<p class="content" ng-bind-html="post.content"></p>
+
+<div class="author-container">
+  <div class="row">
+    <div class="col-sm-3">
+      <a ui-sref="profileUser({username: post.postedBy.username})" class="img-circle post-by-img-container">
+        <div style="background: url('../upload/avatar/{{post.postedBy.avatar}}'); background-position: center; background-size: cover;" class="post-by-img"/>
+      </a>
+    </div>
+    <div class="col-sm-9" style="padding-top:10px;">
+      <a ui-sref="profileUser({username: post.postedBy.username})"><h3>{{post.postedBy.name}}</h3></a>
+      <div class="author-description">
+        {{post.postedBy.description}}
+      </div>
+      <a href="https://github.com/{{post.postedBy.github}}" ng-show="post.postedBy.github"><i class="fa fa-github fa-2x"></i></a>
+      <a href="https://twitter.com/{{post.postedBy.twitter}}" ng-show="post.postedBy.twitter"><i class="fa fa-twitter fa-2x"></i></a>
+      <a href="https://facebook.com/{{post.postedBy.facebook}}" ng-show="post.postedBy.facebook"><i class="fa fa-facebook fa-2x"></i></a>
+    </div>
+  </div>
+</div>
+
+<div class="tag-container">
+  <h3><strong>Tags:</strong></h3>
+  <h4><a ui-sref="hometag({tag: tag.name})" ng-repeat="tag in post.tag"><span class="label label-default tag">{{tag.name}}</span></a></h4>
+</div>
+
+<div id="discuss-container">
+  <div id="disqus_thread"></div>
+<script>
+    /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+     */
+    /*
+    var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//plumablog.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+</div>

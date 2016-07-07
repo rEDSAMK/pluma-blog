@@ -1,0 +1,95 @@
+<style>
+  .form-group{
+    margin-top:30px;
+  }
+  .panel{
+    margin-top:50px;
+  }
+  .edit-post-container{
+    margin-top:100px;
+  }
+  .search-form{
+    margin-bottom:25px;
+  }
+</style>
+
+<a ui-sref="admin.adminNewPost">
+  <button class="btn btn-primary"
+    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Add
+  </button>
+</a>
+<div class="form-group">
+  <label class="control-label">Search post</label>
+  <input type="text" class="form-control search-form" placeholder="Search" ng-model="postSearch.title"/>
+</div>
+<div class="form-group">
+  <label class="control-label">Filter status</label>
+  <select class="form-control" ng-change="filterStatusFunction()" ng-model="filterStatus">
+    <option value="">All</option>
+    <option value="published">Published</option>
+    <option value="private">Private</option>
+    <option value="draft">Draft</option>
+    <option value="trash">Trash</option>
+  </select>
+</div>
+<ul class="list-group">
+  <li class="list-group-item clickable" ng-click="select($index);" ng-repeat="post in postFiltered = (filtered | orderBy:date:true).slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))" ng-class="{'active': currentlySelected == $index}">
+    <h4 class="list-group-item-heading">{{post.title}}</h4>
+    <h5>Author: {{post.postedBy.name}} - {{ post.date | date:'medium'}}</h5>
+    <div class="list-group-item-text">
+      <span class="label label-success" ng-show="post.status == 'published'">Published</span>
+      <span class="label label-primary" ng-show="post.status == 'draft'">Draft</span>
+      <span class="label label-default" ng-show="post.status == 'private'">Private</span>
+      <span class="label label-danger" ng-show="post.status == 'trash'">Trash</span>
+    </div>
+  </li>
+</ul>
+<div class="pagination-centered">
+  <uib-pagination total-items="totalItems" max-size="maxSize" force-ellipses="true" boundary-links="true" rotate="true" ng-model="currentPage" ng-change="pageChanged()" class="pagination" items-per-page="itemsPerPage"></uib-pagination>
+</div>
+
+<div ng-show="currentlySelected != -1" class="edit-post-container">
+  <h3>Edit post</h3>
+
+  <div class="form-group">
+    <label class="control-label">Post status</label>
+    <select class="form-control" ng-model="status">
+      <option value="published">Published</option>
+      <option value="private">Private</option>
+      <option value="draft">Draft</option>
+    </select>
+  </div>
+  <form class="form-inline">
+    <div class="form-group">
+      <button class="btn btn-primary" ng-click="updatePost()">
+        <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+      </button>
+      <button class="btn btn-danger" ng-click="deletePost()">
+        <span class="glyphicon glyphicon-trash" aria-hidden="true"></span> Trash
+      </button>
+    </div>
+  </form>
+
+  <div class="form-group">
+    <label class="control-label">Title</label>
+    <input type="text" class="form-control" placeholder="Title" ng-model="title">
+  </div>
+  <div class="form-group">
+    <label class="control-label">Content</label>
+    <textarea ui-tinymce="tinymceOptions" ng-model="content" ng-change="updatePrism()">Easy! You should check out MoxieManager!</textarea>
+  </div>
+  <div class="form-group">
+    <label class="control-label">Tags</label>
+    <small>separate by a comma</small>
+    <input type="text" class="form-control" placeholder="Title" ng-model="tags">
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Preview</h3>
+    </div>
+    <div class="panel-body" ng-bind-html="content">
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+{
+  "name": "apiserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "grunt && node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.15.1",
+    "compression": "^1.6.2",
+    "express": "^4.13.4",
+    "express-jwt": "^3.4.0",
+    "express-session": "^1.13.0",
+    "jsonwebtoken": "^7.0.1",
+    "lodash": "^4.13.1",
+    "mongoose": "^4.4.20",
+    "multer": "^1.1.0",
+    "multiparty": "^4.1.2",
+    "njwt": "^0.3.0",
+    "q": "^1.4.1"
+  },
+  "devDependencies": {
+    "assert": "^1.4.1",
+    "grunt": "^1.0.1",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-ng-annotate": "^2.0.2",
+    "mocha": "^2.5.3",
+    "supertest": "^1.2.0"
+  }
+}

@@ -1,0 +1,62 @@
+<style>
+  .form-group{
+    margin-top:30px;
+  }
+  .panel{
+    margin-top:50px;
+  }
+</style>
+
+<div class="form-group">
+  <label class="control-label">Title</label>
+  <input type="text" class="form-control" placeholder="Title" ng-model="title">
+</div>
+<div class="form-group">
+  <label class="control-label">Banner</label>
+  <form name="upload_form">
+    <input
+       class="form-control"
+       type="file"
+       ngf-select
+       ng-model="bannerFile"
+       name="bannerFile"
+       ngf-pattern="'image/*'"
+       accept="image/*"
+       ngf-max-size="3MB"
+       />
+    </form>
+    <i ng-show="upload_form.bannerFile.$error.required">*required</i><br>
+<i ng-show="upload_form.bannerFile.$error.maxSize">File too large
+{{bannerFile.size / 1000000|number:1}}MB: max 20M</i>
+</div>
+<div class="form-group">
+  <label class="control-label">Content</label>
+  <textarea ui-tinymce="tinymceOptions" ng-model="tinymceModel">Easy! You should check out MoxieManager!</textarea>
+</div>
+<div class="form-group">
+  <label class="control-label">Tags</label>
+  <small>separate by a comma</small>
+  <input type="text" class="form-control" placeholder="Title" ng-model="tags">
+</div>
+
+<div class="form-group">
+  <label class="control-label">Post status</label>
+  <select class="form-control" ng-model="status">
+    <option value="published">Published</option>
+    <option value="private">Private</option>
+    <option value="draft">Draft</option>
+  </select>
+</div>
+
+<div class="form-group">
+  <button class="btn btn-primary" ng-click="savePost()">
+    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save
+  </button>
+</div>
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Preview</h3>
+  </div>
+  <div class="panel-body" ng-bind-html="tinymceModel">
+  </div>
+</div>
