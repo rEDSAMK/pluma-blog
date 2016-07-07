@@ -1,0 +1,19 @@
+{
+  "secret": "mysecret",
+  "dbURL": "mongodb://user:password@host:port/db",
+  "JWTexpires": 3600,
+  "role": {
+      "ROLE_ADMIN": {
+          "name": "admin",
+          "position": 1
+        },
+        "ROLE_ANY": {
+            "name": "any",
+            "position": 0
+          },
+          "ROLE_USER": {
+              "name": "user",
+              "position": 2
+            }
+  }
+}

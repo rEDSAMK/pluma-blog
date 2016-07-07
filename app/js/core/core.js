@@ -453,6 +453,7 @@ myApp.run(['$rootScope', 'SettingsService','$state', 'MessageService','$template
     SettingsService.banner = SettingsService.bannerDefault;
     $window.ga('send', 'pageview', $location.path());
   });
+  
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
     if(toState.data.requireAuthentication && !SettingsService.isAuthenticated()){
       event.preventDefault();
