@@ -65,7 +65,6 @@ myApp.controller('ProfileController', ['$scope', 'SettingsService', 'userData', 
         $state.go($state.current, {}, {reload: true});
         MessageService.success("User data updated!");
       }).error(function(data, status){
-        //$state.go("profile");
         MessageService.error("Error in update user data: "+data);
       });
 
@@ -446,14 +445,11 @@ function getRandom(n){
 
 myApp.run(['$rootScope', 'SettingsService','$state', 'MessageService','$templateCache', '$window', '$location', function($rootScope, SettingsService, $state, MessageService, $templateCache, $window, $location){
 
-  $window.ga('create', 'UA-80202800-2', 'auto');
-
   $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
     SettingsService.pageTitle = toState.data.title;
     SettingsService.banner = SettingsService.bannerDefault;
-    $window.ga('send', 'pageview', $location.path());
   });
-  
+
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
     if(toState.data.requireAuthentication && !SettingsService.isAuthenticated()){
       event.preventDefault();
