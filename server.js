@@ -48,36 +48,31 @@ if(env === 'production'){
 }
 
 
-
-// make '/app' default route
 app.use('/', express.static('app'));
 app.all(/^((?!\/api).)*$/, function(req, res, next) {
-    // Just send the index.html for other files to support HTML5Mode
-    console.log(req.originalUrl);
+    // Just send the index.html for other files (excluding api path) to support HTML5Mode
+    console.log(req.originalUrl); //debug
     res.sendFile('index.html', { root: __dirname + '/app' });
 });
 
 app.use('/js', express.static(__dirname + '/app/js'));
 app.use('/css', express.static(__dirname + '/app/css'));
 
-
 app.use('/api', expressJwt({secret: config.secret}).unless(function(req) {
   console.log(req.originalUrl + "  "+ req.method);
   return (
-    //req.originalUrl === '/api/test/' ||
     req.originalUrl === '/api/authenticate' ||
     req.originalUrl === '/api/register' ||
     req.originalUrl === '/api/settings' && req.method === 'GET' ||
     /^\/api\/post\/public\/*.*/.test(req.originalUrl) && req.method === 'GET' ||
     /^\/api\/profile\/public\/*.*/.test(req.originalUrl) && req.method === 'GET'
   );
-}));//.unless({ path: ['/api/authenticate', '/api/register', '/api'] }));
+}));
 
 app.use(function (err, req, res, next) {
       if (err.name === 'UnauthorizedError') {
         if (!req.headers.authorization)
           res.status(401).send('missing authorization header');
-
         res.status(401).send('Invalid authorization token');
       }
     });
