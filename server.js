@@ -7,9 +7,21 @@ var app = express();
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var expressJwt = require('express-jwt');
-var config = require('./config.json');
 var mongoose = require('mongoose');
 var compression = require('compression');
+var fs = require('fs');
+var config = {};
+
+try {
+  stats = fs.statSync("config.json");
+  config = require('./config.json');
+  console.log("Using config.json");
+}
+catch (e) {
+  config = require('./config.sample.json');
+  console.log("Using config.sample.json");
+}
+
 mongoose.connect(config.dbURL);
 require("./model/user.js");
 require("./model/post.js");
