@@ -4,3 +4,5 @@ npm-debug.log
 /*.env
 /test
 config.json
+/app/upload/*
+/app/upload/
