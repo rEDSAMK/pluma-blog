@@ -1,8 +1,10 @@
 #Pluma
 Headquarter and my personal blog [Pluma Blog - Vincenzo 'rEDSAMK' Greco](https://pluma-redsamk.rhcloud.com/)
+
 The goal of Pluma is to make a light, secure and open source blog engine entirely made in MEAN stack.
 
 Pluma is entirely crafted from scratch in full MEAN Stack. Authentication is performed with Json Web Tokens (JWTs).
+
 The communication between front-end and back-end is entirely managed through the REST API, thus giving the opportunity to develop apps and software to manage the blog.
 
 **NOTE**: At the moment both the code and the engine system itself are unripe, in need of a refactoring, good test units and some secondary features that a blog must have. But i'm pretty happy about the current work, the foundations for a functional blog system have been launched and the main features are already live.
