@@ -1,5 +1,5 @@
 #Pluma
-Headquarted and my personal blog [Pluma Blog - Vincenzo 'rEDSAMK' Greco](https://pluma-redsamk.rhcloud.com/)
+Headquarter and my personal blog [Pluma Blog - Vincenzo 'rEDSAMK' Greco](https://pluma-redsamk.rhcloud.com/)
 The goal of Pluma is to make a light, secure and open source blog engine entirely made in MEAN stack.
 
 Pluma is entirely crafted from scratch in full MEAN Stack. Authentication is performed with Json Web Tokens (JWTs).
@@ -59,4 +59,5 @@ Pluma is totally free and open source (relased under **Mozilla Public License 2.
 - Prism.js - MIT License
 - Font Awesome by Dave Gandy - http://fontawesome.io
 - TODO: FINISH LIST
+
 If i forgot some others external components used by this software i would ask you to report it and i recommend you to read their own license.
