@@ -1,5 +1,5 @@
 #Pluma
-Headquarter and my personal blog [Pluma Blog - Vincenzo 'rEDSAMK' Greco](https://pluma-redsamk.rhcloud.com/)
+Headquarter and my personal blog Pluma Blog - Vincenzo 'rEDSAMK' Greco (not maintained at the moment)
 
 The goal of Pluma is to make a light, secure and open source blog engine entirely made in MEAN stack.
 
